@@ -9,17 +9,19 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.sam.mlkittextrecognition.databinding.ActivityCameraBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+@AndroidEntryPoint
 class CameraXActivity : AppCompatActivity() {
 
     private var binding: ActivityCameraBinding? = null
@@ -87,9 +89,6 @@ class CameraXActivity : AppCompatActivity() {
             val imageAnalysis = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
-                .also { analysis ->
-                    analysis.setAnalyzer(cameraExecutor!!, TextRecognitionAnalyzer())
-                }
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -102,7 +101,7 @@ class CameraXActivity : AppCompatActivity() {
                     imageCapture,
                     imageAnalysis
                 )
-            } catch (exc: Exception) {
+            } catch (_: Exception) {
                 Toast.makeText(this, "Use case binding failed", Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))

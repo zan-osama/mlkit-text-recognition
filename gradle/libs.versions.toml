@@ -8,12 +8,16 @@ appcompat = "1.7.1"
 material = "1.13.0"
 constraintlayout = "2.2.1"
 activityKtx = "1.13.0"
-navigationFragmentKtx = "2.9.7"
-navigationUiKtx = "2.9.7"
-detekt = "1.23.6"
-camerax = "1.5.1"
-exifinterface = "1.3.7"
+navigationFragmentKtx = "2.9.8"
+navigationUiKtx = "2.9.8"
+detekt = "1.23.8"
+camerax = "1.6.0"
+exifinterface = "1.4.2"
 mlkitTextRecognition = "16.0.1"
+hilt = "2.59.2"
+hilt-plugin = "2.59.2"
+kapt = "9.2.0"
+gson = "2.14.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,12 +36,13 @@ androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycl
 androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
 androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
 google-mlkit-text-recognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "mlkitTextRecognition" }
-google-mlkit-text-recognition-chinese = { group = "com.google.mlkit", name = "text-recognition-chinese", version.ref = "mlkitTextRecognition" }
-google-mlkit-text-recognition-devanagari = { group = "com.google.mlkit", name = "text-recognition-devanagari", version.ref = "mlkitTextRecognition" }
-google-mlkit-text-recognition-japanese = { group = "com.google.mlkit", name = "text-recognition-japanese", version.ref = "mlkitTextRecognition" }
-google-mlkit-text-recognition-korean = { group = "com.google.mlkit", name = "text-recognition-korean", version.ref = "mlkitTextRecognition" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 [plugins]
+google-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-plugin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kapt = { id = "com.android.legacy-kapt", version.ref = "kapt" }
 
