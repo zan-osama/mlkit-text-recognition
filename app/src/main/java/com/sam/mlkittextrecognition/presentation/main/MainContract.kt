@@ -1,16 +1,16 @@
 package com.sam.mlkittextrecognition.presentation.main
 
 import android.graphics.Bitmap
-import com.google.mlkit.vision.text.Text
 import com.sam.mlkittextrecognition.common.base.viewmodel.BaseViewModelEffect
 import com.sam.mlkittextrecognition.common.base.viewmodel.BaseViewModelEvent
 import com.sam.mlkittextrecognition.common.base.viewmodel.BaseViewModelState
+import com.sam.mlkittextrecognition.domain.model.TextBlockDomain
 
 interface MainContract {
 
     sealed interface State : BaseViewModelState {
         object ViewCreated : State
-        data class ShowVisualText(val textBlocks: List<Text.TextBlock>) : State
+        data class ShowVisualText(val textBlocks: List<TextBlockDomain>) : State
     }
 
     sealed interface Event : BaseViewModelEvent {
