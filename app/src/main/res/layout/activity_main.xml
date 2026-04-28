@@ -17,25 +17,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/capturedImageView"
+    <FrameLayout
+        android:id="@+id/imageContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#EEEEEE"
-        android:contentDescription="@string/captured_image"
-        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@id/textVisionContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5">
+
+        <ImageView
+            android:id="@+id/capturedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:contentDescription="@string/captured_image"
+            android:scaleType="fitCenter" />
+
+        <com.sam.mlkittextrecognition.presentation.common.BoundingBoxOverlayView
+            android:id="@+id/boundingBoxOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/textVisionContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/openCameraButton">
+        app:layout_constraintBottom_toTopOf="@id/boundingBoxToggleContainer">
 
         <TextView
             android:id="@+id/nikTextView"
@@ -50,6 +62,39 @@
             android:layout_marginBottom="16dp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/boundingBoxToggleContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/openCameraButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/showTextBlockButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="@string/hide_text_block"
+            app:backgroundTint="@color/text_block_color" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/showLinesButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="@string/hide_lines"
+            app:backgroundTint="@color/line_color" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/openCameraButton"
         android:layout_width="0dp"

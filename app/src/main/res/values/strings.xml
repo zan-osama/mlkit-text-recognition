@@ -4,6 +4,10 @@
     <string name="open_camera">Open Camera</string>
     <string name="captured_image">Captured image</string>
     <string name="capture">Capture</string>
+    <string name="show_text_block">Show TextBlock</string>
+    <string name="hide_text_block">Hide TextBlock</string>
+    <string name="show_lines">Show Lines</string>
+    <string name="hide_lines">Hide Lines</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
