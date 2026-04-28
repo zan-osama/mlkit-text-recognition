@@ -11,9 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CameraViewModel @Inject constructor(
     private val cameraUseCase: CameraUseCase
-) : BaseViewModel<CameraContract.Event, CameraContract.State, CameraContract.Effect>() {
-
-    override val initialState = CameraContract.State.Idle
+) : BaseViewModel<CameraContract.Event, CameraContract.State, CameraContract.Effect>(CameraContract.State.Idle) {
 
     private val aspectRatioOptions = listOf(
         AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY to "4:3",

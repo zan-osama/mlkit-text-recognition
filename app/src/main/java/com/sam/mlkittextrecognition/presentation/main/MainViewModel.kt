@@ -3,6 +3,8 @@ package com.sam.mlkittextrecognition.presentation.main
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.sam.mlkittextrecognition.common.base.viewmodel.BaseViewModel
+import com.sam.mlkittextrecognition.domain.history.SaveCaptureUseCase
+import com.sam.mlkittextrecognition.domain.model.CaptureHistory
 import com.sam.mlkittextrecognition.domain.model.RecognitionResult
 import com.sam.mlkittextrecognition.domain.usecase.RecognizeTextUseCase
 import com.sam.mlkittextrecognition.presentation.main.MainActivity.Companion.TAG
@@ -13,9 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val recognizeTextUseCase: RecognizeTextUseCase,
-) : BaseViewModel<MainContract.Event, MainContract.State, MainContract.Effect>() {
-
-    override val initialState: MainContract.State = MainContract.State.ViewCreated
+    private val saveCaptureUseCase: SaveCaptureUseCase,
+) : BaseViewModel<MainContract.Event, MainContract.State, MainContract.Effect>(MainContract.State.ViewCreated) {
 
     override fun processEvent(event: MainContract.Event) {
         when (event) {
@@ -28,6 +29,13 @@ class MainViewModel @Inject constructor(
                     when (val result = recognizeTextUseCase.invoke(event.inputImage)) {
                         is RecognitionResult.Success -> {
                             Log.d(TAG, "success")
+                            // Save to history
+                            saveCaptureUseCase(
+                                CaptureHistory(
+                                    imagePath = "", // Get from camera result
+                                    extractedText = result.data.textDomain.text
+                                )
+                            )
                             emitState(MainContract.State.ShowVisualText(result.data))
                         }
 

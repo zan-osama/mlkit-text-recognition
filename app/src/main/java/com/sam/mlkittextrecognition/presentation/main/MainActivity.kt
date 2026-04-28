@@ -2,6 +2,7 @@ package com.sam.mlkittextrecognition.presentation.main
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.sam.mlkittextrecognition.R
 import com.sam.mlkittextrecognition.databinding.ActivityMainBinding
 import com.sam.mlkittextrecognition.domain.model.TextRecognitionData
 import com.sam.mlkittextrecognition.presentation.camera.CameraXActivity
+import com.sam.mlkittextrecognition.presentation.history.HistoryActivity
 import com.sam.mlkittextrecognition.util.BoundingBoxUtils
 import com.sam.mlkittextrecognition.util.ImageUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,6 +80,10 @@ class MainActivity : AppCompatActivity() {
 
         binding?.openCameraButton?.setOnClickListener {
             checkCameraPermissionAndLaunch()
+        }
+
+        binding?.historyButton?.setOnClickListener {
+            startActivity(HistoryActivity.createIntent(this))
         }
     }
 

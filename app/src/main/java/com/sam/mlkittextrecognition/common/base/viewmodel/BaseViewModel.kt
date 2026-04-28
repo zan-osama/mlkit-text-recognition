@@ -10,11 +10,10 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<EVENT : BaseViewModelEvent, STATE : BaseViewModelState, EFFECT : BaseViewModelEffect> : BaseViewModelContract<EVENT, STATE, EFFECT>, ViewModel() {
+abstract class BaseViewModel<EVENT : BaseViewModelEvent, STATE : BaseViewModelState, EFFECT : BaseViewModelEffect>(initialState: STATE) :
+    BaseViewModelContract<EVENT, STATE, EFFECT>, ViewModel() {
 
-    abstract val initialState: STATE
-
-    private val _state = MutableStateFlow(initialState)
+    private val _state: MutableStateFlow<STATE> by lazy { MutableStateFlow(initialState)}
     override val state: StateFlow<STATE> = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<EFFECT>()
