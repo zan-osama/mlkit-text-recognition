@@ -1,5 +1,7 @@
 package com.sam.mlkittextrecognition.domain.usecase.di
 
+import com.sam.mlkittextrecognition.domain.camera.CameraUseCase
+import com.sam.mlkittextrecognition.domain.camera.CameraUseCaseImpl
 import com.sam.mlkittextrecognition.domain.usecase.RecognizeTextUseCase
 import com.sam.mlkittextrecognition.domain.usecase.RecognizeTextUseCaseImpl
 import dagger.Binds
@@ -17,4 +19,10 @@ abstract class UseCaseModule {
     abstract fun bindRecognizeTextUseCase(
         useCase: RecognizeTextUseCaseImpl
     ): RecognizeTextUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindCameraUseCase(
+        useCase: CameraUseCaseImpl
+    ): CameraUseCase
 }
