@@ -26,13 +26,13 @@ class MainViewModel @Inject constructor(
 
             is MainContract.Event.DoAnalyzeImage -> {
                 viewModelScope.launch {
-                    when (val result = recognizeTextUseCase.invoke(event.inputImage)) {
+                    when (val result = recognizeTextUseCase.invoke(Pair(event.inputImage, false))) {
                         is RecognitionResult.Success -> {
                             Log.d(TAG, "success")
                             // Save to history
                             saveCaptureUseCase(
                                 CaptureHistory(
-                                    imagePath = "", // Get from camera result
+                                    imagePath = event.imagePath,
                                     extractedText = result.data.textDomain.text
                                 )
                             )

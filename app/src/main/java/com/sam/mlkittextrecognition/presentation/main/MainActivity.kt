@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 if (file.exists()) {
                     val bitmap = ImageUtils.rotateBitmapIfRequired(path)
                     binding?.capturedImageView?.setImageBitmap(bitmap)
-                    performTextRecognition(bitmap)
+                    performTextRecognition(bitmap, path)
                 }
             }
         }
@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun performTextRecognition(bitmap: Bitmap) {
-        viewModel.processEvent(MainContract.Event.DoAnalyzeImage(bitmap))
+    private fun performTextRecognition(bitmap: Bitmap, imagePath: String) {
+        viewModel.processEvent(MainContract.Event.DoAnalyzeImage(bitmap, imagePath))
     }
 
     private fun setupToggleButtons() {
@@ -204,6 +204,7 @@ class MainActivity : AppCompatActivity() {
                     MainContract.Effect.HideLoader -> {}
                     MainContract.Effect.Kill -> {}
                     MainContract.Effect.ShowLoader -> {}
+                    MainContract.Effect.ShowProcessing -> {}
                 }
             }
         }

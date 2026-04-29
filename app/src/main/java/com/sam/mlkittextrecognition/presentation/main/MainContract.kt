@@ -19,7 +19,7 @@ interface MainContract {
 
     sealed interface Event : BaseViewModelEvent {
         object ViewCreated : Event
-        data class DoAnalyzeImage(val inputImage: Bitmap) : Event
+        data class DoAnalyzeImage(val inputImage: Bitmap, val imagePath: String) : Event
         data class ToggleTextBlockVisibility(val show: Boolean) : Event
         data class ToggleLinesVisibility(val show: Boolean) : Event
     }
@@ -28,5 +28,6 @@ interface MainContract {
         object ShowLoader : Effect
         object HideLoader : Effect
         object Kill : Effect
+        object ShowProcessing : Effect
     }
 }
